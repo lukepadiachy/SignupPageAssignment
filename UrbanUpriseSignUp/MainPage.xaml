@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UrbanUpriseSignUp.ProfilePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#333333">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="SIGN UP FOR YOUR FREE TRIAL" FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center" Margin="10,10,0,10" TextColor="White" />
+            <Frame BorderColor="Gray" CornerRadius="20" Padding="10" HeightRequest="400" WidthRequest="350">
+                <StackLayout>
+                    <Frame BorderColor="Gray" CornerRadius="20" Padding="5" HeightRequest="100" WidthRequest="100">
+                        <ImageButton Source="imagegallery.png" Clicked="OnSelectImageClicked" HeightRequest="80" WidthRequest="80">
+                            <ImageButton.Triggers>
+                                <DataTrigger TargetType="ImageButton" Binding="{Binding Profile.PicturePath}" Value="{x:Null}">
+                                    <Setter Property="Source" Value="imagegallery.png" />
+                                </DataTrigger>
+                            </ImageButton.Triggers>
+                        </ImageButton>
+                    </Frame>
+                    <Entry Placeholder="Name" Text="{Binding Profile.Name, Mode=TwoWay}"/>
+                    <Entry Placeholder="Surname" Text="{Binding Profile.Surname, Mode=TwoWay}" />
+                    <Entry Placeholder="Email" Text="{Binding Profile.Email, Mode=TwoWay}" />
+                    <Editor Placeholder="Bio" Text="{Binding Profile.Bio, Mode=TwoWay}" />
+                    <StackLayout Orientation="Horizontal" Spacing="10" Margin="10,30,10,10">
+                        <Button Text="Save Profile" Clicked="OnSaveProfileClicked" BackgroundColor="#FFA500" TextColor="Black" WidthRequest="150" />
+                        <Button Text="Load Profile" Clicked="OnLoadProfileClicked" BackgroundColor="#FFA500" TextColor="Black" WidthRequest="150" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Label Text="Loaded Profiles:" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,10" TextColor="White" />
+            <ListView ItemsSource="{Binding LoadedProfiles}" BackgroundColor="#333333">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding PicturePath}" />
+                                <Label Text="{Binding Name}" TextColor="White" />
+                                <Label Text=" " />
+                                <Label Text="{Binding Surname}" TextColor="White" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
+
+
+
+
+
+
